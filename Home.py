@@ -2,10 +2,6 @@ import streamlit as st
 from PIL import Image, ImageEnhance
 import base64
 
-
-
-
-
 # Load the image
 background_image = Image.open('images/rose.jpg')
 
