@@ -86,11 +86,11 @@ csv = pd.read_csv('data/colors.csv', names=index, header=None)
 
 # Thumbnail images
 thumbnail_images = {
-    "Image 1": "data/Untitled_Artwork.jpg",
-    "Image 2": "data/Untitled_Artwork.jpg",
-    "Image 3": "data/Untitled_Artwork.jpg",
-    "Image 4": "data/Untitled_Artwork.jpg",
-    "Image 5": "data/522416403-removebg-preview.png"
+    "Dog": "images/dog.jpg",
+    "Food": "images/food.jpg",
+    "Toucan": "images/toucan.jpg",
+    "Toy": "images/toy.jpg",
+    "Bridge": "images/bridge.jpg"
 }
 
 st.title("Mini Lightroom App")
