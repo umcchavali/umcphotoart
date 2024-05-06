@@ -101,7 +101,7 @@ chart_placeholder = st.empty()
 
 # Button to recommend colors
 if st.button("Recommend Colors"):
-    recommended_colors, proportions = recommend_colors(selected_genre)
+    recommended_colors, proportions = recommended_colors(selected_genre)
     
     # Display the recommended colors
     st.write("Recommended colors:")
