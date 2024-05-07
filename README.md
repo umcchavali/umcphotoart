@@ -62,6 +62,10 @@ Color blindness refers to a condition where individuals have difficulty distingu
 
 The UMC Photoart App is a versatile tool for photo editing, color analysis, and color palette generation. It leverages various Python libraries and packages, including Streamlit, NumPy, PIL (Python Imaging Library), pandas, OpenCV (cv2), scikit-learn (for KMeans clustering), and Plotly.
 
+## Data
+The data for this project is a web scraped version of a colors csv file. As I was searching for RGB values of various colors I was able to find this dataset - https://github.com/amankharwal/Website-data/blob/master/colors.csv
+I later added column names and made some minor tweaks.
+
 ## Features
 - **Photo Editing**: The app includes a mini Lightroom feature that allows users to adjust image attributes such as brightness, contrast, saturation, hue, temperature, tint, and vibrance.
 - **Vision Simulation**: Users can simulate different types of color vision deficiencies, such as deuteranopia, protanopia, and tritanopia, as well as the vision of animals like dogs, cats, and birds.
