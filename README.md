@@ -8,6 +8,7 @@ Hey there, welcome to UMCPhotoart! Ready to dive into a whole new world where ar
 Whether you're a seasoned pro or just getting started, there's something here for everyone! Get ready to unleash your inner artist with features like our mini lightroom app 📸, perfect for tweaking those pics until they're Instagram-ready. Plus, we've got a vision simulator 👓 that lets you see the world through different eyes – literally!
 
 And if you're ever stuck on finding the perfect color palette, don't sweat it. Our color palette finder 🎨 has got your back. Oh, and speaking of Instagram, be sure to check out our page @umc.photoart for some extra inspiration and behind-the-scenes fun. Let's create something awesome together!
+## Check out more at: https://umcphotoart.carrd.co/
 
 ## 🦄 Vision Simulator
 
