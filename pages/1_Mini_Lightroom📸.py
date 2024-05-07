@@ -93,7 +93,15 @@ thumbnail_images = {
     "Bridge": "images/bridge.jpg"
 }
 
-st.title("Mini Lightroom App")
+st.title("📸 Mini Lightroom App")
+
+st.write("🎞 A mini Lightroom app is like having a pocket-sized photo studio in your hands! It lets you tweak and enhance your photos with powerful editing tools, from adjusting brightness and contrast to fine-tuning colors and adding artistic effects.")
+
+st.write("📕 Saturation: Controls the intensity or vividness of colors in an image.")
+st.write("📔 Hue: Represents the color's position on the color wheel, determining its shade or tint.")
+st.write("📘 Temperature: Adjusts the warmth or coolness of colors in an image, mimicking the effect of different lighting conditions.")
+st.write("📗 Tint: Adds a subtle color cast to an image, often used to create artistic effects or correct color balance.")
+st.write("📙 Vibrance: Enhances the intensity of muted colors without affecting skin tones, making them appear more vibrant and lively.")
 
 # Select image
 selected_image = st.selectbox("Select an image", list(thumbnail_images.keys()))

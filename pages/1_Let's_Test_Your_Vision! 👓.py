@@ -55,7 +55,21 @@ def download_image(image, filename="image.jpg"):
     st.download_button(label="Download Image", data=img_bytes, file_name=filename)
 
 # Load image
-st.title("Vision Simulator")
+st.title("🦄 Vision Simulator")
+
+st.write("Color blindness refers to a condition where individuals have difficulty distinguishing certain colors. There are different types of color blindness, including:")
+
+st.write("   💚 Deuteranopia: Green-blindness, making it challenging to differentiate between red and green colors.")
+st.write("   ❤️ Protanopia: Red-blindness, causing difficulty in distinguishing between red and green colors.")
+st.write("   💙 Tritanopia: Blue-blindness, leading to challenges in differentiating between blue and yellow colors.")
+
+st.write("🦋 Animal Vision: Animals perceive colors differently from humans due to variations in their visual systems. The app simulates the vision of three different animals:")
+st.write("   🐶 Dog: Simulates blue-yellow colorblindness, similar to certain types of human color blindness.")
+st.write("   🐱 Cat: Vision similar to grayscale, lacking the vibrant colors perceived by humans.")
+st.write("   🦜 Bird: Enhanced UV perception, allowing birds to see a broader spectrum of colors, including ultraviolet light")
+
+
+
 uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
 # Define simulation options
@@ -72,8 +86,8 @@ simulation_options = {
 # Display predefined images for selection
 st.subheader("Select a predefined image:")
 image_options = {
-    "Dog": "images/dog.jpg",
     "Food": "images/food.jpg",
+    "Dog": "images/dog.jpg",
     "Toucan": "images/toucan.jpg",
     "Toy": "images/toy.jpg",
     "Bridge": "images/bridge.jpg"
@@ -89,7 +103,7 @@ if uploaded_image is not None:
     image = Image.open(uploaded_image)
 
 # Select vision type
-vision_type = st.selectbox("Select vision type:", list(simulation_options.keys()))
+vision_type = st.selectbox("😎 Select vision type:", list(simulation_options.keys()))
 
 # Display description for selected vision type
 st.write(simulation_options[vision_type])

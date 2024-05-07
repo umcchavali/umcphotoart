@@ -38,10 +38,19 @@ def display_color_palette(palette, palette_type):
     st.pyplot(fig)
 
 # Title of the app
-st.title("Color Palette Generator")
+st.title("🌈 Color Palette Generator")
+
+st.write("🍭 Hey there! Ever heard of color theory? It's like the science behind the rainbow, helping us understand how colors work together to create different moods and effects. From the way they complement each other to the emotions they evoke, color theory is like a secret code that artists and designers use to make their creations pop!")
+st.write("🔴 Primary Colors: Red, blue, and yellow are considered primary colors because they cannot be created by mixing other colors. They are fundamental for creating all other colors in the color wheel.")
+st.write("🟠 Secondary Colors: Orange, green, and purple are secondary colors. They are created by mixing two primary colors together. For example, mixing red and blue creates purple.")
+st.write("🟡 Complementary Colors: Complementary colors are pairs of colors that are opposite each other on the color wheel. When placed next to each other, they create contrast and make each other appear more vibrant.")
+st.write("🟢 Analogous Colors: Analogous colors are groups of colors that are adjacent to each other on the color wheel. They usually share similar hues and create a harmonious color scheme when used together.")
+st.write("🔵 Triadic Colors: Triadic colors are three colors that are evenly spaced around the color wheel. They provide a balanced and vibrant color scheme when used together, as they offer a good contrast while maintaining harmony.")
+
+
 
 # Dropdown menu to select a color
-selected_color = st.selectbox("Choose a Color", csv['color_name'].unique())
+selected_color = st.selectbox("Choose a Color 👇", csv['color_name'].unique())
 
 if selected_color:
     selected_row = csv[csv['color_name'] == selected_color].iloc[0]
@@ -53,6 +62,7 @@ if selected_color:
 
     st.subheader("Color Palettes")
 
+   
     st.subheader("Complementary Palette")
     complementary_palette = generate_complementary_palette(selected_color_rgb)
     display_color_palette(complementary_palette, "Complementary")
