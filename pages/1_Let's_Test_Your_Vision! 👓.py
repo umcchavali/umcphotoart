@@ -103,7 +103,7 @@ if uploaded_image is not None:
     image = Image.open(uploaded_image)
 
 # Select vision type
-vision_type = st.selectbox("😎 Select vision type:", list(simulation_options.keys()))
+vision_type = st.selectbox("**😎 Select vision type:**", list(simulation_options.keys()))
 
 # Display description for selected vision type
 st.write(simulation_options[vision_type])

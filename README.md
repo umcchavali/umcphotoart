@@ -79,3 +79,11 @@ The UMC Photoart App is a versatile tool for photo editing, color analysis, and 
 
 ## Future Plans
 In the future I hope to take this app further by implementing other techniques. Some concepts that I was thinking about include remove background, color trend analysis and historic uses of color. Hoping to work on this is in the summer :) 
+
+
+
+Sources:
+Emojis: https://1000logos.net/emoji-copy-and-paste/smiley/
+Images: https://www.pexels.com/
+Work by UMC.Photoart: https://www.instagram.com/umc.photoart/
+Code: Some code snippets from Open AI's ChatGPT
