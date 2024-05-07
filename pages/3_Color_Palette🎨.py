@@ -3,31 +3,40 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-# Load the colors dataset
+#so patches is a part of amtplotlib that can be useful when playing with colors and creating swatches of colors
+
+def load_data(csv):
+    df = pd.read_csv(csv)
+    return df
+
+
+index=["color", "color_name", "hex", "R", "G", "B"]
+csv = pd.read_csv('data/colors.csv', names=index, header=None)
+
 csv = pd.read_csv("data/colors.csv")
 
-# Function to convert RGB values to hexadecimal format
+#RGB values to hexadecimal format
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(rgb[0], rgb[1], rgb[2])
 
-# Function to generate complementary color palette
+#complementary color palette
 def generate_complementary_palette(color):
     complementary_color = tuple(255 - value for value in color)
     return [color, complementary_color]
 
-# Function to generate analogous color palette
+# analogous color palette
 def generate_analogous_palette(color):
     step = 30
     analogous_colors = [(color[0], color[1], max(0, min(255, color[2] + (i * step)))) for i in range(-2, 3)]
     return analogous_colors
 
-# Function to generate triadic color palette
+# triadic color palette
 def generate_triadic_palette(color):
     step = 120
     triadic_colors = [(color[0], max(0, min(255, color[1] + (i * step))), max(0, min(255, color[2] + (i * step)))) for i in range(0, 3)]
     return triadic_colors
 
-# Function to display color palette
+#color palette
 def display_color_palette(palette, palette_type):
     fig, ax = plt.subplots(1, len(palette), figsize=(12, 2))
     for i, color in enumerate(palette):
@@ -37,7 +46,7 @@ def display_color_palette(palette, palette_type):
     plt.tight_layout()
     st.pyplot(fig)
 
-# Title of the app
+
 st.title("🌈 Color Palette Generator")
 
 st.write("🍭 Hey there! Ever heard of color theory? It's like the science behind the rainbow, helping us understand how colors work together to create different moods and effects. From the way they complement each other to the emotions they evoke, color theory is like a secret code that artists and designers use to make their creations pop!")
@@ -49,7 +58,7 @@ st.write("🔵 Triadic Colors: Triadic colors are three colors that are evenly s
 
 
 
-# Dropdown menu to select a color
+# Dropdown
 selected_color = st.selectbox("Choose a Color 👇", csv['color_name'].unique())
 
 if selected_color:

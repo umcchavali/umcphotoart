@@ -1,6 +1,13 @@
 [theme]
-primaryColor = "#006400"  # Dark green color
-backgroundColor = "#FFFFFF"  # White background color
-secondaryBackgroundColor = "#F0F0F0"  # Secondary background color
-textColor = "#333333"  # Default text color
-font = "sans-serif"  # Default font
+base="light"
+primaryColor="#008080"
+backgroundColor="#FFFFFF"
+textColor="#000000"
+secondaryBackgroundColor="#008080"
+
+
+
+
+
+
+  

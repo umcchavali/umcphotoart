@@ -7,50 +7,52 @@ import cv2
 from sklearn.cluster import KMeans
 from plotly import graph_objects as go
 
-# Function to adjust image properties
+#make sure all packages are pip installed cv2, PIL and Kmeans are important
+
+# we want to first check image properties and adjust them as required
 def adjust_image(image, saturation, hue, temperature, tint, vibrance):
-    # Convert image to numpy array
+    # image to numpy array
     img_array = np.array(image)
     
-    # Convert RGB image to HSL color space
+    # RGB image to HSL color space
     img_hsl = Image.fromarray(img_array).convert("HSV")
     
-    # Adjust saturation
+    # saturation
     enhancer = ImageEnhance.Color(img_hsl)
     img_hsl = enhancer.enhance(saturation)
     
-    # Adjust hue
+    # hue
     enhancer = ImageEnhance.Color(img_hsl)
     img_hsl = enhancer.enhance(hue)
     
-    # Convert back to RGB
+    # back to RGB
     img_rgb = img_hsl.convert("RGB")
     
-    # Adjust temperature (color balance)
+    #  temperature 
     enhancer = ImageEnhance.Color(img_rgb)
     img_rgb = enhancer.enhance(temperature)
     
-    # Adjust tint
+    # tint
     enhancer = ImageEnhance.Color(img_rgb)
     img_rgb = enhancer.enhance(tint)
     
-    # Adjust vibrance
+    #   vibrance
     enhancer = ImageEnhance.Color(img_rgb)
     img_rgb = enhancer.enhance(vibrance)
     
     return img_rgb
 
-# Function to download image
+# download image
 def download_image(image, filename="image.jpg"):
-    # Convert PIL image to bytes
+    # PIL image to bytes so that fomatting is good
     img_bytes = io.BytesIO()
     image.save(img_bytes, format="JPEG")
     img_bytes.seek(0)
     
-    # Download file
+    # download file option
     st.download_button(label="Download Image", data=img_bytes, file_name=filename)
 
-# Function to recognize color
+# recognize color
 def recognize_color(R, G, B):
     minimum = 10000
     color_name = ""
@@ -58,14 +60,14 @@ def recognize_color(R, G, B):
         try:
             d = abs(R - int(csv.loc[i, "R"])) + abs(G - int(csv.loc[i, "G"])) + abs(B - int(csv.loc[i, "B"]))
         except ValueError:
-            # Skip if any of the RGB values cannot be converted to integers
+            # adding the option to skip if any of the RGB values cannot be converted to integers
             continue
         if d <= minimum:
             minimum = d
             color_name = csv.loc[i, "color_name"]
     return color_name
 
-# Function to compute dominant colors
+# compute dominant colors
 def compute_dominant_colors(image, k=10):
     img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     img_flat = img.reshape(-1, 3)
@@ -74,17 +76,17 @@ def compute_dominant_colors(image, k=10):
     colors = kmeans.cluster_centers_.astype(int)
     return colors
 
-# Load color data from CSV file
+# cache data so that app runs smoothly!
 @st.cache_data
 def load_data(csv):
     df = pd.read_csv(csv)
     return df
 
-# Load color data
+
 index=["color", "color_name", "hex", "R", "G", "B"]
 csv = pd.read_csv('data/colors.csv', names=index, header=None)
 
-# Thumbnail images
+# images to be displayed
 thumbnail_images = {
     "Dog": "images/dog.jpg",
     "Food": "images/food.jpg",
@@ -103,51 +105,49 @@ st.write("📘 Temperature: Adjusts the warmth or coolness of colors in an image
 st.write("📗 Tint: Adds a subtle color cast to an image, often used to create artistic effects or correct color balance.")
 st.write("📙 Vibrance: Enhances the intensity of muted colors without affecting skin tones, making them appear more vibrant and lively.")
 
-# Select image
+
 selected_image = st.selectbox("Select an image", list(thumbnail_images.keys()))
 
-# Read selected image
+# selected image
 file_path = thumbnail_images[selected_image]
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"], key=selected_image)
 
 if uploaded_file is not None:
-    # Read image
+    
     file_bytes = uploaded_file.read()
     nparr = np.frombuffer(file_bytes, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 else:
-    # Load selected thumbnail image
+    
     img = cv2.imread(file_path)
 
-# Resize image to a fixed size
+# resize 
 img_resized = cv2.resize(img, (500, int(img.shape[0] * (500 / img.shape[1]))))
 
-# Compute dominant colors
+# dominant color calculation
 colors = compute_dominant_colors(img_resized, k=10)
 
-# Convert colors to hexadecimal and get color names
+#colors to hexadecimal and get color names 
 colors_hex = ['#%02x%02x%02x' % (color[0], color[1], color[2]) for color in colors]
 color_names = [recognize_color(color[0], color[1], color[2]) for color in colors]
 
-# Calculate proportions of colors
+#proportions of colors
 proportions = np.random.rand(len(colors))
 
-# Sort colors and proportions by proportions in descending order
+# sorting colors and proportions by proportions in descending order
 sorted_indices = np.argsort(proportions)[::-1]
 sorted_color_names = [color_names[i] for i in sorted_indices]
 sorted_colors_hex = [colors_hex[i] for i in sorted_indices]
 sorted_proportions = [proportions[i] for i in sorted_indices]
 
-# Create Plotly bar chart for color composition
+#Plotly bar chart for color composition
 bar = go.Figure(data=[go.Bar(x=sorted_color_names, y=sorted_proportions,
                              marker=dict(color=sorted_colors_hex))])
 
-# Customize layout
 bar.update_layout(title='Dominant Color Composition', xaxis_title='Color',
                   yaxis_title='Proportion', showlegend=False,
                   width=300, height=400)
 
-# Store original image properties
 original_properties = {
     "saturation": 1.0,
     "hue": 1.0,
@@ -156,7 +156,7 @@ original_properties = {
     "vibrance": 1.0
 }
 
-# Display original image and bar plot
+
 st.subheader("Original Image and Dominant Color Composition")
 col1, col2 = st.columns([2, 1])
 with col1:
@@ -182,9 +182,9 @@ with col2:
 # Download button
 #download_image(Image.fromarray(adjusted_image))
 
-# Function to download image
+# have to make sure in bytes so that there are no errors. 
 def download_image(image, filename="image.jpg"):
-    # Convert PIL image to bytes
+    
     img_bytes = io.BytesIO()
     image.save(img_bytes, format="JPEG")
     img_bytes.seek(0)
