@@ -1,4 +1,4 @@
-## Check This Out!
+# Click here! 👇
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://umc-photoart.streamlit.app/)
 
 # Welcome to UMC Photoart! 🎨
